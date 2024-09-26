@@ -1,3 +1,4 @@
+import { Wallet } from '@dynamic-labs/sdk-react-core'
 import { SC_CASM } from './casm'
 import { SC_SIERRA } from './sierra'
 import { RpcProvider, CallData, stark, Contract } from 'starknet'
@@ -12,7 +13,7 @@ function createByteArray(itemString: string) {
     for (let i = 0; i < itemBytes.length; i += 31) {
         ps.push(itemBytes.slice(i, i + 31))
     }
-    
+
     const pending_word_len = itemBytes.length;
     return {
         pending_word_len: pending_word_len,
@@ -21,8 +22,7 @@ function createByteArray(itemString: string) {
     }
 }
 
-export async function deployContract(account: any, ownerAddress: string, name: string, time_at: string, description: string) {
-
+export async function deployContract(account: Wallet, ownerAddress: string, name: string, time_at: string, description: string) {
     const sierraCode = SC_SIERRA
     const casmCode = SC_CASM
     const myCallData = new CallData(sierraCode.abi)
@@ -39,11 +39,10 @@ export async function deployContract(account: any, ownerAddress: string, name: s
     const constructor = myCallData.compile("constructor", args)
 
     console.log("Deploying Smart Contract...", args);
-    const deployResponse = await account.declareAndDeploy({
-        contract: sierraCode,
-        casm: casmCode,
-        constructorCalldata: constructor,
-        salt: stark.randomAddress(),
+    const deployer = await account.connector.getSigner()
+    const deployResponse = await deployer.deployContract({
+        classHash: "0x0479a27eef90e2d2cab7f65a21dd495729578895612d642d869dbfd08b0f372c", // pre-declared class hash on Sepolia
+        constructorCalldata: constructor
     })
 
     const sContract = new Contract(sierraCode.abi, deployResponse.deploy.contract_address, PROVIDER_SEPOLIA);
