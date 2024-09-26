@@ -71,12 +71,9 @@ const NewEvent = () => {
           try {
             await new Promise(resolve => setTimeout(resolve, 1000))
             console.log('Form submitted:', eventData)
-            
-            console.log('account: ', account);
-            console.log('address: ', address);
 
             const contractAddress = await deployContract(
-                account,
+                primaryWallet,
                 address,
                 eventData.title,
                 eventData.date,
