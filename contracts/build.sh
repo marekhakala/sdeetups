@@ -2,7 +2,7 @@
 SCARB_NAME="starknetdeetups"
 SMART_CONTRACT_NAME="StarknetDeetup"
 TARGET_PATH="./target/dev"
-TS_OUTPUT_PATH="../lib/contract"
+TS_OUTPUT_PATH="../libs/contract"
 
 SC_PATH="${TARGET_PATH}/${SCARB_NAME}_${SMART_CONTRACT_NAME}"
 SIERRA_PATH="${SC_PATH}.contract_class.json"

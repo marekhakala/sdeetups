@@ -1,17 +1,36 @@
+import Link from 'next/link';
+import Image from "next/image";
 
 export default function Home() {
-    return (
-        <main className="items-center min-h-screen p-24 flex justify-center ">
-            <div className="flex flex-col items-center text-center gap-6">
-                <img src="/favicon.png" alt="StarknetMeetups Logo" className="h-30 w-auto fill-current" />
-                <h1 className="text-4xl font-bold mb-4">StarknetMeetups</h1>
-                <hr className="w-full border-gray-300 mb-4" />
-                <div className="flex flex-col md:flex-row gap-4">
-                    <a className="bg-blue-400 hover:bg-blue-700 text-white py-2 px-4 rounded" href="/new">
-                        New Event
-                    </a>
-                </div>
-            </div>
-        </main>
-    )
+  return (
+    <div className="grid grid-rows-[1fr,auto,auto] items-center justify-items-center">
+      <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
+        <Image
+          src="/logo.png"
+          alt="Starknet Deetups Logo"
+          width={200}
+          height={100}
+          priority
+        />
+        <p className="text-xl text-center sm:text-left">
+          Welcome to a decentralized solution for meetups.
+        </p>
+        <div className="flex gap-4">
+          <Link href="/new">
+            <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+              Create New Event
+            </button>
+          </Link>
+          <Link href="/lookup">
+            <button className="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded">
+              Lookup Event
+            </button>
+          </Link>
+        </div>
+      </main>
+      <footer className="row-start-3 flex gap-6 flex-wrap items-center justify-center w-full mt-16 py-4 bg-white">
+        © StarkNet Fanat1c5, Inc.
+      </footer>
+    </div>
+  );
 }

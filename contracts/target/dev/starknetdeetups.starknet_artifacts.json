@@ -1,0 +1,1 @@
+{"version":1,"contracts":[{"id":"dfg670lf996ca","package_name":"starknetdeetups","contract_name":"StarknetDeetup","module_path":"starknetdeetups::starknetdeetups::StarknetDeetup","artifacts":{"sierra":"starknetdeetups_StarknetDeetup.contract_class.json","casm":"starknetdeetups_StarknetDeetup.compiled_contract_class.json"}}]}
